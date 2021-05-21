@@ -1275,7 +1275,7 @@ function CH:SetupChat()
 		frame:FontTemplate(LSM:Fetch("font", self.db.font), fontSize, self.db.fontOutline)
 
 		if self.db.fontOutline ~= "NONE" then
-			frame:SetShadowColor(0, 0, 0, 0.2)
+			frame:SetShadowColor(0, 0, 0, 1)
 		else
 			frame:SetShadowColor(0, 0, 0, 1)
 		end

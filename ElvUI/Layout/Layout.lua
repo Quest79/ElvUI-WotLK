@@ -23,8 +23,8 @@ function LO:Initialize()
 
 	self.BottomPanel = CreateFrame("Frame", "ElvUI_BottomPanel", E.UIParent)
 	self.BottomPanel:SetTemplate("Transparent")
-	self.BottomPanel:Point("BOTTOMLEFT", E.UIParent, "BOTTOMLEFT", 400, -1)
-	self.BottomPanel:Point("BOTTOMRIGHT", E.UIParent, "BOTTOMRIGHT", -400, -1)
+	self.BottomPanel:Point("BOTTOMLEFT", E.UIParent, "BOTTOMLEFT", 400, -1.5)
+	self.BottomPanel:Point("BOTTOMRIGHT", E.UIParent, "BOTTOMRIGHT", -400, -1.5)
 	self.BottomPanel:Height(PANEL_HEIGHT)
 	self.BottomPanel:SetScript("OnShow", Panel_OnShow)
 	Panel_OnShow(self.BottomPanel)
@@ -184,16 +184,16 @@ function LO:RepositionChatDataPanels()
 	LeftChatTab:Point("BOTTOMLEFT", LeftChatPanel, "TOPLEFT", SPACING, -(SPACING + PANEL_HEIGHT))
 
 	--Left Chat Data Panel
-	LeftChatDataPanel:Point("BOTTOMLEFT", LeftChatPanel, "BOTTOMLEFT", SPACING + SIDE_BUTTON_WIDTH, SPACING)
-	LeftChatDataPanel:Point("BOTTOMRIGHT", LeftChatPanel, "BOTTOMRIGHT", -SPACING, SPACING)
-	LeftChatDataPanel:Point("TOPRIGHT", LeftChatPanel, "BOTTOMRIGHT", -SPACING, (SPACING + PANEL_HEIGHT))
-	LeftChatDataPanel:Point("TOPLEFT", LeftChatPanel, "BOTTOMLEFT", SIDE_BUTTON_SPACING + SIDE_BUTTON_WIDTH, (SPACING + PANEL_HEIGHT))
+	LeftChatDataPanel:Point("BOTTOMLEFT", LeftChatPanel, "BOTTOMLEFT", SPACING + SIDE_BUTTON_WIDTH, -1)
+	LeftChatDataPanel:Point("BOTTOMRIGHT", LeftChatPanel, "BOTTOMRIGHT", -SPACING, -1)
+	LeftChatDataPanel:Point("TOPRIGHT", LeftChatPanel, "BOTTOMRIGHT", -SPACING, (SPACING + PANEL_HEIGHT -3))
+	LeftChatDataPanel:Point("TOPLEFT", LeftChatPanel, "BOTTOMLEFT", SIDE_BUTTON_SPACING + SIDE_BUTTON_WIDTH, (SPACING + PANEL_HEIGHT -3))
 
 	--Left Chat Toggle Button
 	LeftChatToggleButton:Point("TOPRIGHT", LeftChatDataPanel, "TOPLEFT", E.Border - E.Spacing*3, 0)
-	LeftChatToggleButton:Point("TOPLEFT", LeftChatDataPanel, "TOPLEFT", -E.Border - E.Spacing*3 - SIDE_BUTTON_WIDTH, 0)
-	LeftChatToggleButton:Point("BOTTOMLEFT", LeftChatPanel, "BOTTOMLEFT", SPACING, SPACING)
-	LeftChatToggleButton:Point("BOTTOMRIGHT", LeftChatPanel, "BOTTOMLEFT", SPACING + SIDE_BUTTON_WIDTH, SPACING)
+	LeftChatToggleButton:Point("TOPLEFT", LeftChatDataPanel, "TOPLEFT", -E.Border - E.Spacing*3 - SIDE_BUTTON_WIDTH-1, 0)
+	LeftChatToggleButton:Point("BOTTOMLEFT", LeftChatPanel, "BOTTOMLEFT", SPACING, SPACING-3)
+	LeftChatToggleButton:Point("BOTTOMRIGHT", LeftChatPanel, "BOTTOMLEFT", SPACING + SIDE_BUTTON_WIDTH, SPACING-3)
 
 	--Right Chat Tab
 	RightChatTab:Point("TOPRIGHT", RightChatPanel, "TOPRIGHT", -SPACING, -SPACING)
@@ -202,16 +202,16 @@ function LO:RepositionChatDataPanels()
 	RightChatTab:Point("BOTTOMRIGHT", RightChatPanel, "TOPRIGHT", -SPACING, -(SPACING + PANEL_HEIGHT))
 
 	--Right Chat Data Panel
-	RightChatDataPanel:Point("BOTTOMLEFT", RightChatPanel, "BOTTOMLEFT", SPACING, SPACING)
-	RightChatDataPanel:Point("BOTTOMRIGHT", RightChatPanel, "BOTTOMRIGHT", -SPACING-SIDE_BUTTON_WIDTH, SPACING)
-	RightChatDataPanel:Point("TOPRIGHT", RightChatPanel, "BOTTOMRIGHT", -(SIDE_BUTTON_SPACING + SIDE_BUTTON_WIDTH), SPACING + PANEL_HEIGHT)
-	RightChatDataPanel:Point("TOPLEFT", RightChatPanel, "BOTTOMLEFT", (SPACING), SPACING + PANEL_HEIGHT)
+	RightChatDataPanel:Point("BOTTOMLEFT", RightChatPanel, "BOTTOMLEFT", SPACING, -1)
+	RightChatDataPanel:Point("BOTTOMRIGHT", RightChatPanel, "BOTTOMRIGHT", -SPACING-SIDE_BUTTON_WIDTH, -1)
+	RightChatDataPanel:Point("TOPRIGHT", RightChatPanel, "BOTTOMRIGHT", -(SIDE_BUTTON_SPACING + SIDE_BUTTON_WIDTH), SPACING + PANEL_HEIGHT -3)
+	RightChatDataPanel:Point("TOPLEFT", RightChatPanel, "BOTTOMLEFT", (SPACING), SPACING + PANEL_HEIGHT -3)
 
 	--Right Chat Toggle Button
 	RightChatToggleButton:Point("TOPLEFT", RightChatDataPanel, "TOPRIGHT", -E.Border + E.Spacing*3, 0)
-	RightChatToggleButton:Point("TOPRIGHT", RightChatDataPanel, "TOPRIGHT", E.Border + E.Spacing*3 + SIDE_BUTTON_WIDTH, 0)
-	RightChatToggleButton:Point("BOTTOMRIGHT", RightChatPanel, "BOTTOMRIGHT", -SPACING, SPACING)
-	RightChatToggleButton:Point("BOTTOMLEFT", RightChatPanel, "BOTTOMRIGHT", -SPACING - SIDE_BUTTON_WIDTH, SPACING)
+	RightChatToggleButton:Point("TOPRIGHT", RightChatDataPanel, "TOPRIGHT", E.Border + E.Spacing*3 + SIDE_BUTTON_WIDTH+1, 0)
+	RightChatToggleButton:Point("BOTTOMRIGHT", RightChatPanel, "BOTTOMRIGHT", -SPACING, SPACING-3)
+	RightChatToggleButton:Point("BOTTOMLEFT", RightChatPanel, "BOTTOMRIGHT", -SPACING - SIDE_BUTTON_WIDTH, SPACING-3)
 end
 
 function LO:ToggleChatPanels()
@@ -290,11 +290,11 @@ function LO:CreateChatPanels()
 	lchat:SetFrameStrata("BACKGROUND")
 	lchat:SetFrameLevel(100)
 	lchat:Size(E.db.chat.panelWidth, E.db.chat.panelHeight)
-	lchat:Point("BOTTOMLEFT", E.UIParent, 4, 4)
+	lchat:Point("BOTTOMLEFT", E.UIParent, -1, -1)
 	lchat:CreateBackdrop("Transparent")
 	lchat.backdrop.ignoreBackdropColors = true
 	lchat.backdrop:SetAllPoints()
-	E:CreateMover(lchat, "LeftChatMover", L["Left Chat"], nil, nil, nil, nil, nil, "chat,general")
+	--E:CreateMover(lchat, "LeftChatMover", L["Left Chat"], nil, nil, nil, nil, nil, "chat,general")
 
 	--Background Texture
 	lchat.tex = lchat:CreateTexture(nil, "OVERLAY")
@@ -316,8 +316,8 @@ function LO:CreateChatPanels()
 	--lchatdp:Point("BOTTOMRIGHT", lchat, "BOTTOMRIGHT", -SPACING, SPACING)
 	--lchatdp:Point("TOPRIGHT", lchat, "BOTTOMRIGHT", -SPACING, (SPACING + PANEL_HEIGHT))
 	--lchatdp:Point("TOPLEFT", lchat, "BOTTOMLEFT", SIDE_BUTTON_SPACING+SIDE_BUTTON_WIDTH, (SPACING + PANEL_HEIGHT))
-	lchatdp:Point('BOTTOMLEFT', lchat, 'BOTTOMLEFT', SPACING + SIDE_BUTTON_WIDTH, SPACING) --schism
-	lchatdp:Point('TOPRIGHT', lchat, 'BOTTOMRIGHT', -SPACING, (SPACING + PANEL_HEIGHT)) -- schism
+	--lchatdp:Point('BOTTOMLEFT', lchat, 'BOTTOMLEFT', SPACING + SIDE_BUTTON_WIDTH, SPACING) --schism
+	--lchatdp:Point('TOPRIGHT', lchat, 'BOTTOMRIGHT', -SPACING, (SPACING + PANEL_HEIGHT)) -- schism
 	lchatdp:SetTemplate(E.db.datatexts.panelTransparency and "Transparent" or "Default", true)
 
 	DT:RegisterPanel(lchatdp, 3, "ANCHOR_TOPLEFT", -17, 4)
@@ -346,11 +346,11 @@ function LO:CreateChatPanels()
 	rchat:SetFrameStrata("BACKGROUND")
 	rchat:SetFrameLevel(100)
 	rchat:Size(E.db.chat.separateSizes and E.db.chat.panelWidthRight or E.db.chat.panelWidth, E.db.chat.separateSizes and E.db.chat.panelHeightRight or E.db.chat.panelHeight)
-	rchat:Point("BOTTOMRIGHT", E.UIParent, -4, 4)
+	rchat:Point("BOTTOMRIGHT", E.UIParent, 1, -1)
 	rchat:CreateBackdrop("Transparent")
 	rchat.backdrop.ignoreBackdropColors = true
 	rchat.backdrop:SetAllPoints()
-	E:CreateMover(rchat, "RightChatMover", L["Right Chat"], nil, nil, nil, nil, nil, "chat,general")
+	--E:CreateMover(rchat, "RightChatMover", L["Right Chat"], nil, nil, nil, nil, nil, "chat,general")
 
 	--Background Texture
 	rchat.tex = rchat:CreateTexture(nil, "OVERLAY")
