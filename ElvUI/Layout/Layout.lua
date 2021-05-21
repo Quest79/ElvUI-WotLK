@@ -11,7 +11,7 @@ local PANEL_HEIGHT = 22
 local SIDE_BUTTON_WIDTH = 16
 
 local function Panel_OnShow(self)
-	self:SetFrameLevel(0)
+	self:SetFrameLevel(200) --schism
 	self:SetFrameStrata("BACKGROUND")
 end
 
@@ -23,8 +23,8 @@ function LO:Initialize()
 
 	self.BottomPanel = CreateFrame("Frame", "ElvUI_BottomPanel", E.UIParent)
 	self.BottomPanel:SetTemplate("Transparent")
-	self.BottomPanel:Point("BOTTOMLEFT", E.UIParent, "BOTTOMLEFT", -1, -1)
-	self.BottomPanel:Point("BOTTOMRIGHT", E.UIParent, "BOTTOMRIGHT", 1, -1)
+	self.BottomPanel:Point("BOTTOMLEFT", E.UIParent, "BOTTOMLEFT", 400, -1)
+	self.BottomPanel:Point("BOTTOMRIGHT", E.UIParent, "BOTTOMRIGHT", -400, -1)
 	self.BottomPanel:Height(PANEL_HEIGHT)
 	self.BottomPanel:SetScript("OnShow", Panel_OnShow)
 	Panel_OnShow(self.BottomPanel)
@@ -312,10 +312,12 @@ function LO:CreateChatPanels()
 
 	--Left Chat Data Panel
 	local lchatdp = CreateFrame("Frame", "LeftChatDataPanel", lchat)
-	lchatdp:Point("BOTTOMLEFT", lchat, "BOTTOMLEFT", SPACING + SIDE_BUTTON_WIDTH, SPACING)
-	lchatdp:Point("BOTTOMRIGHT", lchat, "BOTTOMRIGHT", -SPACING, SPACING)
-	lchatdp:Point("TOPRIGHT", lchat, "BOTTOMRIGHT", -SPACING, (SPACING + PANEL_HEIGHT))
-	lchatdp:Point("TOPLEFT", lchat, "BOTTOMLEFT", SIDE_BUTTON_SPACING+SIDE_BUTTON_WIDTH, (SPACING + PANEL_HEIGHT))
+	--lchatdp:Point("BOTTOMLEFT", lchat, "BOTTOMLEFT", SPACING + SIDE_BUTTON_WIDTH, SPACING)
+	--lchatdp:Point("BOTTOMRIGHT", lchat, "BOTTOMRIGHT", -SPACING, SPACING)
+	--lchatdp:Point("TOPRIGHT", lchat, "BOTTOMRIGHT", -SPACING, (SPACING + PANEL_HEIGHT))
+	--lchatdp:Point("TOPLEFT", lchat, "BOTTOMLEFT", SIDE_BUTTON_SPACING+SIDE_BUTTON_WIDTH, (SPACING + PANEL_HEIGHT))
+	lchatdp:Point('BOTTOMLEFT', lchat, 'BOTTOMLEFT', SPACING + SIDE_BUTTON_WIDTH, SPACING) --schism
+	lchatdp:Point('TOPRIGHT', lchat, 'BOTTOMRIGHT', -SPACING, (SPACING + PANEL_HEIGHT)) -- schism
 	lchatdp:SetTemplate(E.db.datatexts.panelTransparency and "Transparent" or "Default", true)
 
 	DT:RegisterPanel(lchatdp, 3, "ANCHOR_TOPLEFT", -17, 4)

@@ -248,11 +248,16 @@ function AB:CreateBar(id)
 	bar:Point(point, anchor, attachTo, x, y)
 	bar.id = id
 	bar:CreateBackdrop(self.db.transparentBackdrops and "Transparent")
-	bar:SetFrameStrata("LOW")
+	bar:SetFrameStrata("MEDIUM")	--schism. was low 2, but weird ui bug cuases exp bar to be set from low 1 to med 2, covering the buttons.
+	bar:SetFrameLevel(3)	--schism
+	--bar:SetFrameStrata("LOW")
 
 	--Use this method instead of :SetAllPoints, as the size of the mover would otherwise be incorrect
 	bar.backdrop:SetPoint("TOPLEFT", bar, "TOPLEFT", E.Spacing, -E.Spacing)
 	bar.backdrop:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", -E.Spacing, E.Spacing)
+
+	bar.backdrop:SetFrameStrata("BACKGROUND")	--schism
+	bar.backdrop:SetFrameLevel(1)	--schism
 
 	bar.buttons = {}
 	bar.bindButtons = self.barDefaults["bar"..id].bindButtons
