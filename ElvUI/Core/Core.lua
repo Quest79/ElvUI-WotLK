@@ -839,10 +839,10 @@ end
 --schism
 function suiCreateShadow(f, r, g, b, a, s1, s2, edge)
 
-	local sh = CreateFrame('Frame', nil, f) -
+	local sh = CreateFrame('Frame', nil, f)
 
-	sh:SetFrameLevel(1)
-	sh:SetFrameStrata(f:GetFrameStrata())
+	sh:SetFrameLevel(0)
+	sh:SetFrameStrata("BACKGROUND")
 	sh:SetOutside(f, s1, s2)
 	sh:SetBackdrop( {
 		edgeFile = LSM:Fetch('border', 'ElvUI GlowBorder'), edgeSize = E:Scale(edge),

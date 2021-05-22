@@ -30,6 +30,9 @@ function UF:Construct_TargetTargetFrame(frame)
 	E:CreateMover(frame, frame:GetName().."Mover", L["TargetTarget Frame"], nil, nil, nil, "ALL,SOLO", nil, "unitframe,targettarget,generalGroup")
 
 	frame.unitframeType = "targettarget"
+
+	suiCreateShadow(frame.Health,0,0,0,1,4,4,5) --schism shadow
+	suiCreateShadow(frame.Power,0,0,0,1,4,4,5) --schism shadow
 end
 
 function UF:Update_TargetTargetFrame(frame, db)

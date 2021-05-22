@@ -61,6 +61,10 @@ function UF:Construct_PlayerFrame(frame)
 	E:CreateMover(frame, frame:GetName().."Mover", L["Player Frame"], nil, nil, nil, "ALL,SOLO", nil, "unitframe,player,generalGroup")
 
 	frame.unitframeType = "player"
+
+	suiCreateShadow(frame.Health,0,0,0,1,4,4,5) --schism shadow
+	suiCreateShadow(frame.Power,0,0,0,1,4,4,5) --schism shadow
+
 end
 
 function UF:Update_PlayerFrame(frame, db)

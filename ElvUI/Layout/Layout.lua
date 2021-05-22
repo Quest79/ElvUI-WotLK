@@ -29,6 +29,8 @@ function LO:Initialize()
 	self.BottomPanel:SetScript("OnShow", Panel_OnShow)
 	Panel_OnShow(self.BottomPanel)
 	self:BottomPanelVisibility()
+	suiCreateShadow(self.BottomPanel,0,0,0,1,4,4,5) --schism shadow
+
 
 	self.TopPanel = CreateFrame("Frame", "ElvUI_TopPanel", E.UIParent)
 	self.TopPanel:SetTemplate("Transparent")
@@ -173,6 +175,9 @@ end
 function LO:RepositionChatDataPanels()
 	LeftChatDataPanel:ClearAllPoints()
 	RightChatDataPanel:ClearAllPoints()
+
+	suiCreateShadow(LeftChatDataPanel,0,0,0,0.5,4,4,5) --schism shadow
+	suiCreateShadow(RightChatDataPanel,0,0,0,0.5,4,4,5) --schism shadow
 
 	local SPACING = E.Border*3 - E.Spacing
 	local SIDE_BUTTON_SPACING = (E.PixelMode and E.Border*4) or SPACING*2

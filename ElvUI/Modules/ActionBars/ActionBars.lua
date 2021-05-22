@@ -169,6 +169,8 @@ function AB:PositionAndSizeBar(barName)
 		button:Size(size)
 		button:SetAttribute("showgrid", 1)
 
+		suiCreateShadow(button,0,0,0,1,1,1,2) --schism shadow -- Changes outside each button boarder
+
 		if i == 1 then
 			local x, y
 			if point == "BOTTOMLEFT" then
@@ -283,6 +285,8 @@ function AB:CreateBar(id)
 		self:HookScript(bar.buttons[i], "OnLeave", "Button_OnLeave")
 	end
 	self:UpdateButtonConfig(bar, bar.bindButtons)
+
+	suiCreateShadow(bar,0,0,0,0.5,2,2,2)
 
 	bar:SetAttribute("_onstate-page", [[
 		if newstate ~= 0 then
